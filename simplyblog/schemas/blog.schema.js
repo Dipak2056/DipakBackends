@@ -15,4 +15,9 @@ const BlogSchema = new mongoose.Schema({
     maxlength: [500, "we don't accept blog post longer than 500 characters."],
     minlength: [100, "your blog post must be at least 100 characters long."],
   },
+  authorID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Author",
+    default: null,
+  },
 });

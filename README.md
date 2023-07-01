@@ -13,7 +13,6 @@ To Update a blog, user must be logged in.
 
 ### Technologies
 I will use bcrypt for password management.
-I will use JWT for authentication and authorization.
 I will use MongoDB database.
-I will create a new nodejs backend using expressjs framework.
+I will create a new nodejs backend, REST endpoints, using expressjs framework.
 
