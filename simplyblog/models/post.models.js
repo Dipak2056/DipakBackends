@@ -14,8 +14,8 @@ export const insertBlog = (obj) => {
   return BlogSchema(obj).save();
 };
 // update new post
-export const updateBlog = (filter, obj) => {
-  return BlogSchema.findOneAndUpdate(filter, obj);
+export const updateBlog = (id, obj) => {
+  return BlogSchema.findByIdAndUpdate(id, obj, {new: true});
 };
 // delete a post
 export const deleteBlog = (obj) => {

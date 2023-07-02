@@ -14,7 +14,7 @@ router.post("/addPost", async (req, res, next) => {
   if (req.body.email && req.body.password) {
     let { email, password, ...rest } = req.body;
     //check and get the id of the user to insert here as authorid
-    let userExist = await getUSer({'email':email});
+    let userExist = await getUSer({ email: email });
     // lets verify the user
     if (verifyPassword(password, userExist.password)) {
       let authorID = userExist._id;
@@ -53,13 +53,72 @@ router.get("/blogs", async (req, res, next) => {
   }
 });
 // update a post
+router.put("/update",async(req,res,next)=>{
+  try {
+    const { email, password, blogID, authorID,...rest } = req.body;
+    const author = await getUSer({ _id: authorID });
+    if (author.email === email) {
+      if (verifyPassword(password,author.password)) {
+        const result = await updateBlog(blogID,rest)
+        res.json(result);
+        return
+        result &&
+          res.json({
+            status: "success",
+            message: "You have updated a blog.",
+          });
+      } else {
+        res.json({
+          status:'success',
+          message:'Dont use whatever password.'
+        })
+      }
+    } else {
+      res.json({
+        status:'success',
+        message:'You are not author of this blog, so you cannot delete this blog.'
+      })
+    }
+  } catch (error) {
+    next(error);
+  }
+})
+
 // delete a post
+router.delete("/delete", async (req, res, next) => {
+  try {
+    const { email, password, blogId, authorID } = req.body;
+    const author = await getUSer({ _id: authorID });
+    if (author.email === email) {
+      if (verifyPassword(password,author.password)) {
+        const result = await deleteBlog({ _id: blogId });
+        result &&
+          res.json({
+            status: "success",
+            message: "You have deleted a blog",
+          });
+      } else {
+        res.json({
+          status:'success',
+          message:'Dont use whatever password.'
+        })
+      }
+    } else {
+      res.json({
+        status:'success',
+        message:'You are not author of this blog, so you cannot delete this blog.'
+      })
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 // get single blog post
 router.get("/:_id", async (req, res, next) => {
   try {
     const filter = { _id: req.params._id };
     const result = await getBlog(filter);
-    res.json({
+    result && res.json({
       status: "success",
       message: "Got blog according to id",
       result,
@@ -68,6 +127,5 @@ router.get("/:_id", async (req, res, next) => {
     next(error);
   }
 });
-// get all the blog post
 
 export default router;

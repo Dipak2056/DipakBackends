@@ -6,12 +6,36 @@ Content-Type: application/json
     "email":"paudelsantosh514@gmail.com",
     "password":"antosh",
     "image":"asdfafasdf",
-    "title":"this is my first title for the blog post for 15",
+    "title":"this is to update image",
     "description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not"
 }
+### delete post
+DELETE http://localhost:8000/api/v1/blog/delete
+Content-Type: application/json
 
+{
+    "email":"paudelsantosh514@gmail.com",
+    "password":"antosh",
+    "blogId":"64a1097233d614d0f76360fc",
+    "authorID":"64a1095833d614d0f76360f9"
+}
+
+###update a post
+PUT http://localhost:8000/api/v1/blog/update
+Content-Type: application/json
+
+{
+    "email":"paudelsantosh514@gmail.com",
+    "password":"antosh",
+    "blogID":"64a111f08cd117785186ef07",
+    "authorID":"64a111c18cd117785186ef04",
+    "image":"this will be the updated image if changedit changed",
+    "title":"this is to update title for the blog post for 15",
+    "description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not"
+
+}
 ### get
-GET http://localhost:8000/api/v1/blog/blogs
+GET http://localhost:8000/api/v1/blog/64a1097233d614d0f76360fc
 
 
 ### create user
@@ -28,5 +52,7 @@ POST http://localhost:8000/api/v1/user/delete/
 Content-Type: application/json
 
 {
-    "_id": "64a103fb0e3d3a5785cac45d"
+    "_id": "64a111c18cd117785186ef04"
 }
+
+
