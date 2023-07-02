@@ -26,10 +26,11 @@ app.get("/",(req,res)=>{
     })
 })
 // global error handler
-app.get("/",(error,req,res)=>{
+app.use((err,req,res, next)=>{
+    res.status(err.status || 404);
     res.json({
-        status: 'error',
-        message: error.message,
+        status: "error",
+        message: err.message
     })
 })
 // server listen

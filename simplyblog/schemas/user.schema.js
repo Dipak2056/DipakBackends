@@ -16,6 +16,6 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    maxlength: [8, "Password must not be longer than 8 characters"]},
+  },
 });
 export default mongoose.model("User", UserSchema);
