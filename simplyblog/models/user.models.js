@@ -13,3 +13,4 @@ export const createUser = (obj) => {
 export const deleteUser = (obj) => {
     return userSchema.findOneAndDelete(obj)
 }
+
