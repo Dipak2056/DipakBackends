@@ -15,8 +15,9 @@ router.post("/addPost", async (req, res, next) => {
     let { email, password, ...rest } = req.body;
     //check and get the id of the user to insert here as authorid
     let userExist = await getUSer({ email: email });
+    
     // lets verify the user
-    if (verifyPassword(password, userExist.password)) {
+    if (userExist && verifyPassword(password, userExist.password)) {
       let authorID = userExist._id;
       rest.authorID = authorID;
       const result = await insertBlog(rest);
@@ -28,8 +29,7 @@ router.post("/addPost", async (req, res, next) => {
     } else {
       res.json({
         status: "success",
-        message:
-          "The password you have provided doesnot match to create a post.",
+        message:"You either donot have Id or the password you have provided doesnot match to create a post.",
       });
     }
   } else {
