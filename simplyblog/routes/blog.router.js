@@ -8,25 +8,35 @@ import {
   deleteBlog,
 } from "../models/post.models.js";
 import { getUSer } from "../models/user.models.js";
+import { verifyPassword } from "../config/bcrypt.js";
 // create a new post
 router.post("/addPost", async (req, res, next) => {
   if (req.body.email && req.body.password) {
     let { email, password, ...rest } = req.body;
     //check and get the id of the user to insert here as authorid
-    let userExist = await getUSer({ email});
-    let authorID = userExist._id;
-    rest.authorID = authorID;
-    const result = await insertBlog(rest);
-    res.json({
-      status: "success",
-      message: "you have successfully added a blog post.",
-      result,
-    });
+    let userExist = await getUSer({'email':email});
+    // lets verify the user
+    if (verifyPassword(password, userExist.password)) {
+      let authorID = userExist._id;
+      rest.authorID = authorID;
+      const result = await insertBlog(rest);
+      res.json({
+        status: "success",
+        message: "you have successfully added a blog post.",
+        result,
+      });
+    } else {
+      res.json({
+        status: "success",
+        message:
+          "The password you have provided doesnot match to create a post.",
+      });
+    }
   } else {
     res.json({
-        status: 'success',
-        message: 'Please provide your email and password to add a blog post.'
-    })
+      status: "success",
+      message: "Please provide your email and password to add a blog post.",
+    });
   }
 });
 // get all the posts

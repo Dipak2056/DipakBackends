@@ -6,7 +6,7 @@ Content-Type: application/json
     "email":"paudelsantosh514@gmail.com",
     "password":"antosh",
     "image":"asdfafasdf",
-    "title":"this is my first title for the blog post for 14",
+    "title":"this is my first title for the blog post for 15",
     "description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not"
 }
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 GET http://localhost:8000/api/v1/blog/blogs
 
 
-### post user
+### create user
 POST http://localhost:8000/api/v1/user
 Content-Type: application/json
 
@@ -28,5 +28,5 @@ POST http://localhost:8000/api/v1/user/delete/
 Content-Type: application/json
 
 {
-    "_id": "64a0ffe5abc41510fa13d735"
+    "_id": "64a103fb0e3d3a5785cac45d"
 }

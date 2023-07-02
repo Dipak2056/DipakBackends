@@ -7,12 +7,12 @@ I will be creating some backend projects and will keep updating them here.
 This blog will have an Image, Title of the blog, Description and authors details.
 For simplicity, author details only include email and password.
 In this project, Any user will be able to Read a blog.
-To Create a blog, user must be logged  in.
-To Delete a blog, user must be logged in.
-To Update a blog, user must be logged in.
+Created a blog with, logged in user.
+To Delete a blog, user must enter their password.
+To Update a blog, user must enter their password.
 
 ### Technologies
-I will use bcrypt for password management.
-I will use MongoDB database.
-I will create a new nodejs backend, REST endpoints, using expressjs framework.
+I have used bcrypt for password management.
+I have used MongoDB database.
+I have created a new nodejs backend, REST endpoints, using expressjs framework.
 
