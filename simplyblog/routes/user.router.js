@@ -1,7 +1,8 @@
-import express from "express";
+import express, { request } from "express";
 const router = express.Router();
 import { createUser, deleteUser } from "../models/user.models.js";
 import { encryptPassword } from "../config/bcrypt.js";
+import { deleteMultipleBlogs } from "../models/post.models.js";
 // create a user
 router.post("/", async (req, res, next) => {
   try {
@@ -13,7 +14,7 @@ router.post("/", async (req, res, next) => {
       res.json({
         status: "success",
         message: "User creatd successfully!",
-        result
+        result,
       });
   } catch (error) {
     if (error.message.includes("E11000 duplicate key error")) {
@@ -22,7 +23,28 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
-// get a user by id
 // delete a user
+router.post("/delete", async (req, res, next) => {
+  try {
+    const deleteObject = {
+      _id: req.body._id,
+    };
+
+    const deleteResult = await deleteMultipleBlogs(req.body);
+    const result = await deleteUser(deleteObject);
+     result
+      ? res.json({
+          status: "success",
+          message: `user deleted successfully with ${deleteResult.deletedCount} blogs.`,
+          result,
+        })
+      : res.json({
+          status: "success",
+          message: "this user is not in the database",
+        });
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;

@@ -1,16 +1,17 @@
 ### post
-POST http://localhost:8000/api/v1/blog
+POST http://localhost:8000/api/v1/blog/addPost
 Content-Type: application/json
 
 {
+    "email":"paudelsantosh514@gmail.com",
+    "password":"antosh",
     "image":"asdfafasdf",
-    "title":"this is my first title for the blog post",
-    "authorID":"64a0b8cacec6f5402d6576a1",
+    "title":"this is my first title for the blog post for 14",
     "description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not"
 }
 
 ### get
-GET http://localhost:8000/api/v1/blog/64a0b3ecbeac574ae63711a9
+GET http://localhost:8000/api/v1/blog/blogs
 
 
 ### post user
@@ -18,6 +19,14 @@ POST http://localhost:8000/api/v1/user
 Content-Type: application/json
 
 {
-    "email":"paudelsantosh512@gmail.com",
+    "email":"paudelsantosh514@gmail.com",
     "password":"antosh"
+}
+
+### delete user
+POST http://localhost:8000/api/v1/user/delete/
+Content-Type: application/json
+
+{
+    "_id": "64a0ffe5abc41510fa13d735"
 }
