@@ -35,7 +35,7 @@ Content-Type: application/json
 
 }
 ### get
-GET http://localhost:8000/api/v1/blog/64a1097233d614d0f76360fc
+GET http://localhost:8000/api/v1/blog/blogs
 
 
 ### create user
